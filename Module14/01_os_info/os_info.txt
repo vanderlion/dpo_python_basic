@@ -1,0 +1,4 @@
+OS info is 
+uname_result(system='Windows', node='Vadim-ПК', release='7', version='6.1.7601', machine='AMD64', processor='Intel64 Family 6 Model 15 Stepping 11, GenuineIntel')
+
+Python version is 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)] ('32bit', 'WindowsPE')
