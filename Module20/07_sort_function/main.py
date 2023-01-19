@@ -1,5 +1,7 @@
-def tpl_sort(incoming_list):
-    my_list = list(incoming_list)
-    return tuple(sorted(my_list))
+def tpl_sort(tpl):
+    for element in tpl:
+        if not isinstance(element, int):
+            return tpl
+    return tuple(sorted(tpl))
 
 print(tpl_sort((6, 3, -1, 8, 4, 10, -5)))
