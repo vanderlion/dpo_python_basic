@@ -1,9 +1,10 @@
-def calculating_math_func(data):
-    result = 1
-    for index in range(1, data + 1):
-        result *= index
-    result /= data ** 3
-    result = result ** 10
-    return result
+def calc_func(num, fact={0: 1}):
+    if num not in fact:
+        i = max(fact)
+        for j in range(i + 1, num + 1):
+            fact[j] = fact[j - 1] * j
+    return pow(fact[num] / pow(num, 3), 10)
 
-# TODO оптимизировать функцию
+
+print(calc_func(10))
+print(calc_func(21))
