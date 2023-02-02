@@ -1,33 +1,70 @@
 import random
 
+class KillError(Exception):
+    def __str__(self):
+        return 'Строка с ошибкой'
 
-class Buddhist:
-    def __init__(self, karma=0):
-        self.__karma = karma
+class DrunkError(Exception):
+    def __str__(self):
+        return 'Строка с ошибкой'
 
-    def get_karma(self):
-        return self.__karma
+class CarCrashError(Exception):
+    def __str__(self):
+        return 'Строка с ошибкой'
 
-    def set_karma(self, enlightenment_closer):
-        self.__karma += enlightenment_closer
+class GluttonyError(Exception):
+    def __str__(self):
+        return 'Строка с ошибкой'
 
-
-def one_day(count):
-    if random.randint(1, 10) == 1:
-        with open('karma.log', 'a', encoding='utf-8') as karma_log:
-            misconduct = random.choice(['KillError', 'DrunkError', 'CarCrashError', 'GluttonyError', 'DepressionError'])
-            karma_log.write(f'день {count}: проступок - {misconduct}\n')
-            return False
-    else:
-        return random.randint(1, 7)
+class DepressionError(Exception):
+    def __str__(self):
+        return 'Строка с ошибкой'
 
 
-buddhist = Buddhist()
-day = 0
-while buddhist.get_karma() < 500:
-    day += 1
-    if one_day(day):
+def one_day():
+    en_karma_level = 0
+
+    with open('karma.log', 'w'):
         pass
+
+    while en_karma_level < 500:
+        dice = random.randint(1,10)
+        with open('karma.log', 'a+', encoding='utf-8') as karma:
+            try:
+                if dice == 1:
+                    en_karma_level += 1
+                    raise KillError('KillError')
+            except KillError as exc:
+                karma.write(f'Поймано исключение {exc}\n')
+            try:
+                if dice == 2:
+                    en_karma_level += 2
+                    raise DrunkError('DrunkError')
+            except DrunkError as exc:
+                karma.write(f'Поймано исключение {exc}\n')
+            try:
+                if dice == 3:
+                    en_karma_level += 3
+                    raise CarCrashError('CarCrashError')
+            except CarCrashError as exc:
+                karma.write(f'Поймано исключение {exc}\n')
+            try:
+                if dice == 4:
+                    en_karma_level += 4
+                    raise GluttonyError('GluttonyError')
+            except GluttonyError as exc:
+                karma.write(f'Поймано исключение {exc}\n')
+            try:
+                if dice == 5:
+                    en_karma_level += 5
+                    raise DepressionError('DepressionError')
+            except DepressionError as exc:
+                karma.write(f'Поймано исключение {exc}\n')
+            else:
+                if dice > 5:
+                    en_karma_level += 6
+                    karma.close()
     else:
-        buddhist.set_karma(one_day(day))
-print(('Просветление достигнуто'))
+        print('Просветление достигнуто')
+
+one_day()
