@@ -1,10 +1,9 @@
 class MyDict(dict):
-    def get(self, key, default_value=0):
-        if key in self:
-            return self[key]
-        else:
-            return default_value
+    def __init__(self, *args, **kw):
+        super(MyDict, self).__init__(*args, **kw)
 
+    def __get__(self, instance, owner):
+        return 0
 
 new_dict = MyDict()
 new_dict['Ikari'] = 1
